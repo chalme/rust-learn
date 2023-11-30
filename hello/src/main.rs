@@ -28,3 +28,50 @@ fn handle_connection(mut stream: TcpStream) {
     let response = format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
     stream.write(response.as_bytes()).unwrap();
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    pub fn test_num() {
+        let string = String::from("1");
+        let x = &string;
+
+        println!("{:p}", x);
+
+        let i  = 12;
+        let p = &i;
+        println!("111  {:p}", p);
+
+        let x1: Box<str> = "hello, world".into();
+        println!("{}", x1);
+        assert_eq!(0.1_f32 + 0.2_f32 , 0.3_f32);
+
+        let a = [1, 2, 3];
+
+        let mut iter = a.iter();
+
+// A call to next() returns the next value...
+        assert_eq!(Some(&1), iter.next());
+        assert_eq!(Some(&2), iter.next());
+        assert_eq!(Some(&3), iter.next());
+
+        let vec = vec![1, 2, 3];
+        for i in vec.into_iter() {
+            // vec 的所有权已经转移到迭代器，vec 不再可用
+            println!("{}", i);
+        }
+        let vec = vec![1, 2, 3];
+        for i in vec.iter() {
+            // vec 的所有权没有转移，仍然可以在迭代中使用
+            println!("{}", i);
+        }
+
+        let mut vec = vec![1, 2, 3];
+        for i in vec.iter_mut() {
+            // 可以修改 vec 中的元素
+            *i += 1;
+        }
+
+    }
+}

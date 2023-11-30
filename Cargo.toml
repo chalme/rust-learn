@@ -1,0 +1,7 @@
+#![recursion_limit = "256"]
+
+[workspace]
+members = [
+  "hello",
+  "minigrep",
+]
