@@ -1,8 +1,10 @@
 #![recursion_limit = "256"]
 
 [workspace]
+resolver = "2"
 members = [
-  "hello",
-  "minigrep",
-  "advanced",
+    "hello",
+    "minigrep",
+    "advanced",
+    "axum-web"
 ]
