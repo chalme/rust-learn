@@ -4,7 +4,7 @@ install:
 	cargo build
 
 build:
-	cargo build
+	cargo build --release
 
 dev: ## run development env with hot reload
 	cargo watch -x run
