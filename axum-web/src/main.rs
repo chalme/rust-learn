@@ -9,7 +9,7 @@ use axum::{
 use std::time::Duration;
 use tokio::net::TcpListener;
 use tower_http::{classify::ServerErrorsFailureClass, trace::TraceLayer};
-use tracing::field::debug;
+
 use tracing::log::debug;
 use tracing::{info_span, Span};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};

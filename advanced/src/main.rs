@@ -48,6 +48,6 @@ mod test {
   #[test]
   pub fn test_string_address() {
     let mut s = String::from("hello");
-    let p = &mut s as *mut String;
+    let _p = &mut s as *mut String;
   }
 }

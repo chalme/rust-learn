@@ -33,7 +33,7 @@ fn handle_connection(mut stream: TcpStream) {
 
 #[cfg(test)]
 mod test {
-  use super::*;
+
   #[test]
   pub fn test_num() {
     let string = String::from("1");

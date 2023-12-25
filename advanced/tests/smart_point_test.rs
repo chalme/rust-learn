@@ -7,13 +7,13 @@ use std::thread;
 #[test]
 pub fn test_i32() {
   let x = Box::new(1);
-  let sum = *x + 1;
+  let _sum = *x + 1;
 }
 
 #[test]
 pub fn test_string() {
   let s = Box::new("hello".to_string());
-  let x = s.deref().deref().deref();
+  let _x = s.deref().deref();
 }
 
 struct Foo;

@@ -42,8 +42,8 @@ pub fn test_mutex_multi_thread() {
 #[test]
 pub fn test_lock() {
   let data = Mutex::new(0);
-  let d1 = data.lock();
-  let d2 = data.lock();
+  let _d1 = data.lock();
+  let _d2 = data.lock();
 }
 
 #[test]
@@ -56,14 +56,14 @@ pub fn test_lock_multi_thread() {
     let mutex_2 = Arc::clone(&mutex_2);
     children.push(thread::spawn(move || {
       if i_thread % 2 == 0 {
-        let mut num = mutex_1.lock().unwrap();
+        let _num = mutex_1.lock().unwrap();
         println!("thread {} lock mutex_1, prepare to lock mutex_2", i_thread);
         thread::sleep(Duration::from_millis(10));
-        let mut num = mutex_2.lock().unwrap();
+        let _num = mutex_2.lock().unwrap();
       } else {
-        let mut num = mutex_2.lock().unwrap();
+        let _num = mutex_2.lock().unwrap();
         println!("thread {} lock mutex_2, prepare to lock mutex_1", i_thread);
-        let guard = mutex_1.lock().unwrap();
+        let _guard = mutex_1.lock().unwrap();
       }
     }));
   }
@@ -83,13 +83,13 @@ pub fn test_lock_multi_thread_try() {
     let mutex_2 = Arc::clone(&mutex_2);
     children.push(thread::spawn(move || {
       if i_thread % 2 == 0 {
-        let mut num = mutex_1.lock().unwrap();
+        let _num = mutex_1.lock().unwrap();
         println!("thread {} lock mutex_1, prepare to lock mutex_2", i_thread);
         thread::sleep(Duration::from_millis(10));
-        let mut num = mutex_2.try_lock();
+        let num = mutex_2.try_lock();
         println!("thread {} try_lock mutex_2, result: {:?}", i_thread, num);
       } else {
-        let mut num = mutex_2.lock().unwrap();
+        let _num = mutex_2.lock().unwrap();
         println!("thread {} lock mutex_2, prepare to lock mutex_1", i_thread);
         thread::sleep(Duration::from_millis(10));
         let guard = mutex_1.try_lock();
