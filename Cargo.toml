@@ -6,5 +6,7 @@ members = [
     "hello",
     "minigrep",
     "advanced",
-    "axum-web"
+    "axum-web",
+    "hello_macro",
+    "hello_macro_derive",
 ]
