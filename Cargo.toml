@@ -9,4 +9,5 @@ members = [
     "axum-web",
     "hello_macro",
     "hello_macro_derive",
+    "transfer",
 ]
