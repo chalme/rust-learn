@@ -14,3 +14,10 @@ thiserror = "1.0.52"
 anyhow = "1.0.76"
 hello_macro = { path = "../hello_macro", features = ["derive"] }
 hello_macro_derive = { path = "../hello_macro_derive" }
+futures = "0.3.30"
+ # 1. 性能问题。 mongo 单个文档的大小、  对于data无法做索引，数据库进行计算，数据库压力会很大。 数据量也不建议大。
+ #（这种设计模式，很多都不是很建议）
+ # 2.功能层面。 有两种方案（1. 迁移现有规则，需要梳理，做好规则。 2。 自定义数据结构，自定义规则，容易控制）
+ #              功能效果层面， 不一定一致；
+ # 3.实现层面。 computed 属性字段。 计算字段过程。
+ #
