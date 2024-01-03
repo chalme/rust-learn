@@ -2,7 +2,7 @@ use chrono::NaiveDateTime;
 use mongodb::{options::ClientOptions, Client};
 use mysql_async::prelude::Query;
 use mysql_common::prelude::FromRow;
-use mysql_common::FromRowError;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
