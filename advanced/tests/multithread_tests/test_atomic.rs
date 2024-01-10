@@ -1,4 +1,5 @@
 use std::sync::atomic::AtomicU64;
+use std::sync::{Arc, Mutex};
 use std::thread;
 use tokio::time::Instant;
 
@@ -42,5 +43,28 @@ pub fn test_atomic() {
     R.load(std::sync::atomic::Ordering::Relaxed)
   );
   println!("{}", R.load(std::sync::atomic::Ordering::Relaxed));
+  println!("{}", start.elapsed().as_millis());
+}
+
+#[test]
+fn test_mutex() {
+  let start = Instant::now();
+
+  let counter = Arc::new(Mutex::new(0));
+  let mut threads = Vec::with_capacity(THREAD_NUM);
+  for _ in 0..THREAD_NUM {
+    let counter = Arc::clone(&counter);
+    threads.push(thread::spawn(move || {
+      for _ in 0..N_TIMES {
+        let mut num = counter.lock().unwrap();
+        *num += 1;
+      }
+    }));
+  }
+  for thread in threads {
+    thread.join().unwrap();
+  }
+
+  assert_eq!(N_TIMES * THREAD_NUM as u64, *counter.lock().unwrap());
   println!("{}", start.elapsed().as_millis());
 }
